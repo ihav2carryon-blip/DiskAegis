@@ -26,7 +26,7 @@ async function createWindow() {
         height: 860,
         minWidth: 1080,
         minHeight: 700,
-        title: "AI Disk & RAM Cleaner | 智能磁盘空间与运行内存双优化大师",
+        title: "DiskAegis | AI 智能磁盘空间与运行内存双优化中枢",
         backgroundColor: '#07090e',
         autoHideMenuBar: true,
         webPreferences: {

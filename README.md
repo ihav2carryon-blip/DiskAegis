@@ -1,4 +1,4 @@
-# 🚀 AI Disk & RAM Cleaner (智能磁盘与运行内存双优化桌面大师)
+# 🛡️ DiskAegis (神盾智盘)
 
 <div align="center">
 
@@ -9,7 +9,7 @@
 ![DeepSeek](https://img.shields.io/badge/AI-DeepSeek%20%7C%20Claude%20%7C%20OpenAI-orange?style=flat-square)
 
 **专为全行业数字化工作者打造的 AI 驱动型磁盘与内存治理桌面级应用**  
-结合使用者【职业画像】与【自定义自然语言铁律】，由大模型进行深度资产裁决，安全释放海量存储，瞬间恢复电脑极速性能！
+*「不仅懂清理，更懂你的行业」* —— 结合使用者【职业画像】与【自定义自然语言铁律】，由大模型进行深度资产裁决，安全释放海量存储，瞬间恢复电脑极速性能！
 
 </div>
 
@@ -98,8 +98,8 @@ git add .
 # 3. 提交本地版本
 git commit -m "feat: 🚀 release AI Disk & RAM Cleaner v1.0.0"
 
-# 4. 关联您的 GitHub 远程仓库 (将 YOUR_USERNAME 替换为您的 GitHub 用户名)
-git remote add origin https://github.com/YOUR_USERNAME/ai-disk-cleaner.git
+# 4. 关联 GitHub 远程仓库
+git remote add origin https://github.com/ihav2carryon-blip/DiskAegis.git
 
 # 5. 切换主分支并推送到 GitHub
 git branch -M main
