@@ -1,0 +1,9 @@
+{
+  "protocol": "openai",
+  "provider": "deepseek",
+  "apiKey": "",
+  "model": "deepseek-v4-flash",
+  "baseUrl": "https://api.deepseek.com",
+  "userProfession": "通用职场办公 / 电脑使用者",
+  "customPrompt": "请绝对保留我的核心工作文档、业务聊天通信数据与不可再生工程资产；各类应用产生的临时缓存日志、过期的安装包镜像、闲置的娱乐大游戏可以放心清理。"
+}

@@ -1,0 +1,23 @@
+# 依赖文件
+node_modules/
+
+# 个人私密配置 (保护 API Key 不被推送到公开仓库)
+config.json
+
+# 构建与打包输出产物
+dist/
+out/
+build/
+
+# 扫描临时文件与运行日志
+temp_scan.json
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 系统生成文件
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

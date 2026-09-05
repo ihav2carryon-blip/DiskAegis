@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Disk & RAM Cleaner | 智能磁盘空间与运行内存双优化大师</title>
+    <!-- 引入现代化科技字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark-theme">
+    <!-- 背景流光极光光晕 -->
+    <div class="glow-bg glow-purple"></div>
+    <div class="glow-bg glow-blue"></div>
+    <div class="glow-bg glow-cyan"></div>
+
+    <div class="app-container">
+        <!-- 顶部导航栏 -->
+        <header class="app-header glass-panel">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" stroke="url(#logo-grad)"/>
+                        <path d="M12 6v6l4 2" stroke="url(#logo-grad)" stroke-linecap="round"/>
+                        <defs>
+                            <linearGradient id="logo-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#38bdf8"/>
+                                <stop offset="1" stop-color="#a855f7"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>AI Disk & RAM Sentinel</h1>
+                    <span class="logo-sub">智能磁盘空间与运行内存双优化大师</span>
+                </div>
+            </div>
+
+            <div class="header-status">
+                <div class="status-pill" id="ai-status-pill">
+                    <span class="status-dot"></span>
+                    <span id="ai-status-text">AI 引擎就绪 (DeepSeek)</span>
+                </div>
+                <button class="btn btn-secondary btn-icon" id="btn-refresh-vitals" title="刷新系统状态">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                    </svg>
+                    刷新
+                </button>
+            </div>
+        </header>
+
+        <!-- 第一部分：系统存储与运行内存实时看板 -->
+        <section class="vitals-section">
+            <!-- C 盘状态卡片 -->
+            <div class="vital-card glass-panel" id="card-c-drive">
+                <div class="card-header">
+                    <div class="drive-title">
+                        <span class="drive-badge">C:</span>
+                        <h3>系统主盘 (Windows)</h3>
+                    </div>
+                    <span class="vital-badge" id="c-badge">检测中...</span>
+                </div>
+                <div class="vital-body">
+                    <div class="circle-progress-wrapper">
+                        <svg class="progress-ring" width="100" height="100">
+                            <circle class="ring-bg" stroke="rgba(255,255,255,0.08)" stroke-width="8" fill="transparent" r="42" cx="50" cy="50"/>
+                            <circle class="ring-bar ring-c" id="ring-c" stroke="url(#c-grad)" stroke-width="8" stroke-dasharray="263.89" stroke-dashoffset="263.89" stroke-linecap="round" fill="transparent" r="42" cx="50" cy="50"/>
+                            <defs>
+                                <linearGradient id="c-grad" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#38bdf8"/>
+                                    <stop offset="100%" stop-color="#6366f1"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="ring-center-text">
+                            <span class="ring-percent" id="c-percent">0%</span>
+                            <span class="ring-label">已使用</span>
+                        </div>
+                    </div>
+                    <div class="vital-meta">
+                        <div class="meta-row">
+                            <span class="meta-label">可用空间</span>
+                            <span class="meta-val highlight-free" id="c-free">-- GB</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">已用空间</span>
+                            <span class="meta-val" id="c-used">-- GB</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">总容量</span>
+                            <span class="meta-val" id="c-total">-- GB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- D 盘状态卡片 -->
+            <div class="vital-card glass-panel" id="card-d-drive">
+                <div class="card-header">
+                    <div class="drive-title">
+                        <span class="drive-badge badge-d">D:</span>
+                        <h3>数据与工作区盘</h3>
+                    </div>
+                    <span class="vital-badge" id="d-badge">检测中...</span>
+                </div>
+                <div class="vital-body">
+                    <div class="circle-progress-wrapper">
+                        <svg class="progress-ring" width="100" height="100">
+                            <circle class="ring-bg" stroke="rgba(255,255,255,0.08)" stroke-width="8" fill="transparent" r="42" cx="50" cy="50"/>
+                            <circle class="ring-bar ring-d" id="ring-d" stroke="url(#d-grad)" stroke-width="8" stroke-dasharray="263.89" stroke-dashoffset="263.89" stroke-linecap="round" fill="transparent" r="42" cx="50" cy="50"/>
+                            <defs>
+                                <linearGradient id="d-grad" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#10b981"/>
+                                    <stop offset="100%" stop-color="#06b6d4"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="ring-center-text">
+                            <span class="ring-percent" id="d-percent">0%</span>
+                            <span class="ring-label">已使用</span>
+                        </div>
+                    </div>
+                    <div class="vital-meta">
+                        <div class="meta-row">
+                            <span class="meta-label">可用空间</span>
+                            <span class="meta-val highlight-free" id="d-free">-- GB</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">已用空间</span>
+                            <span class="meta-val" id="d-used">-- GB</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">总容量</span>
+                            <span class="meta-val" id="d-total">-- GB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 运行内存 (RAM) 状态卡片 -->
+            <div class="vital-card glass-panel highlight-ram" id="card-ram">
+                <div class="card-header">
+                    <div class="drive-title">
+                        <span class="drive-badge badge-ram">RAM</span>
+                        <h3>系统运行物理内存</h3>
+                    </div>
+                    <button class="btn btn-ram-boost" id="btn-ram-optimize" title="立即收缩工作集释放闲置内存">
+                        <span class="boost-icon">⚡</span>
+                        一键内存极速优化
+                    </button>
+                </div>
+                <div class="vital-body">
+                    <div class="circle-progress-wrapper">
+                        <svg class="progress-ring" width="100" height="100">
+                            <circle class="ring-bg" stroke="rgba(255,255,255,0.08)" stroke-width="8" fill="transparent" r="42" cx="50" cy="50"/>
+                            <circle class="ring-bar ring-ram" id="ring-ram" stroke="url(#ram-grad)" stroke-width="8" stroke-dasharray="263.89" stroke-dashoffset="263.89" stroke-linecap="round" fill="transparent" r="42" cx="50" cy="50"/>
+                            <defs>
+                                <linearGradient id="ram-grad" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0%" stop-color="#ec4899"/>
+                                    <stop offset="100%" stop-color="#a855f7"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="ring-center-text">
+                            <span class="ring-percent" id="ram-percent">0%</span>
+                            <span class="ring-label">内存负荷</span>
+                        </div>
+                    </div>
+                    <div class="vital-meta">
+                        <div class="meta-row">
+                            <span class="meta-label">空闲内存</span>
+                            <span class="meta-val highlight-free" id="ram-free">-- GB</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">已用内存</span>
+                            <span class="meta-val" id="ram-used">-- GB</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">物理总量</span>
+                            <span class="meta-val" id="ram-total">-- GB</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 内存吃紧进程迷你抽屉 -->
+                <div class="ram-process-bar" id="ram-proc-toggle">
+                    <span>🔥 查看当前 TOP 吃内存应用</span>
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </div>
+                <div class="ram-process-drawer hidden" id="ram-proc-drawer">
+                    <div class="proc-list" id="proc-list-container">
+                        <!-- 动态渲染前几个进程 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二部分：AI 大模型供应商与用户偏好配置 -->
+        <section class="config-section glass-panel">
+            <div class="section-title-bar">
+                <div class="title-with-icon">
+                    <span class="section-badge">01</span>
+                    <h2>AI 大模型配置与【职业 & 规则提示词】设定</h2>
+                </div>
+                <button class="btn btn-secondary btn-sm" id="btn-test-ai">
+                    <span id="test-ai-icon">🔌</span>
+                    测试 AI 连通性
+                </button>
+            </div>
+
+            <div class="config-grid">
+                <!-- 协议规范选择 -->
+                <div class="form-group">
+                    <label for="select-protocol">
+                        调用协议规范
+                        <span class="label-badge badge-primary">用户自由选择</span>
+                    </label>
+                    <div class="custom-select-wrapper">
+                        <select id="select-protocol" class="form-input">
+                            <option value="openai">OpenAI 兼容协议 (DeepSeek / OpenAI / Kimi / GLM 等)</option>
+                            <option value="anthropic">Anthropic Messages 协议 (DeepSeek Anthropic端点 / Claude)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- API Key -->
+                <div class="form-group">
+                    <label for="input-api-key">
+                        <span>API 密钥 (API Key)</span>
+                        <a href="https://platform.deepseek.com/api_keys" target="_blank" rel="noopener" class="link-key-apply" title="前往 DeepSeek 官方开放平台申请 API Key">🔗 申请 API Key</a>
+                    </label>
+                    <div class="input-with-action">
+                        <input type="password" id="input-api-key" class="form-input" placeholder="输入您的 API Key (如 sk-...)">
+                        <button type="button" class="input-eye-btn" id="btn-toggle-key-view" title="显示/隐藏">👁️</button>
+                    </div>
+                </div>
+
+                <!-- 模型选择 (支持下拉与手填) -->
+                <div class="form-group">
+                    <label for="input-model">
+                        <span>模型名称 (Model)</span>
+                        <span class="label-tip">支持选择或自由手填</span>
+                    </label>
+                    <div class="input-with-action">
+                        <input type="text" id="input-model" list="model-options" class="form-input" value="deepseek-v4-flash" placeholder="点击选择或手动输入模型名">
+                        <datalist id="model-options">
+                            <option value="deepseek-v4-flash">DeepSeek V4 Flash (超快速)</option>
+                            <option value="deepseek-v4-pro">DeepSeek V4 Pro (高精度)</option>
+                            <option value="deepseek-v4-flash-vision-exp">DeepSeek V4 Flash Vision Exp</option>
+                            <option value="deepseek-chat">DeepSeek V3 Chat (通用默认)</option>
+                            <option value="deepseek-reasoner">DeepSeek R1 Reasoner (深度思考)</option>
+                            <option value="claude-3-5-sonnet-20241022">Claude 3.5 Sonnet</option>
+                            <option value="gpt-4o">OpenAI GPT-4o</option>
+                            <option value="gpt-4o-mini">OpenAI GPT-4o-mini</option>
+                        </datalist>
+                    </div>
+                    <!-- 快捷模型选择微型标签 -->
+                    <div class="model-quick-pills">
+                        <button type="button" class="pill-mini-model active" data-model="deepseek-v4-flash">v4-flash</button>
+                        <button type="button" class="pill-mini-model" data-model="deepseek-v4-pro">v4-pro</button>
+                        <button type="button" class="pill-mini-model" data-model="deepseek-v4-flash-vision-exp">v4-vision</button>
+                        <button type="button" class="pill-mini-model" data-model="deepseek-chat">chat</button>
+                        <button type="button" class="pill-mini-model" data-model="deepseek-reasoner">r1</button>
+                    </div>
+                </div>
+
+                <!-- 预设快捷供应商 -->
+                <div class="form-group">
+                    <label for="select-provider">快捷填充供应商模板</label>
+                    <div class="custom-select-wrapper">
+                        <select id="select-provider" class="form-input">
+                            <option value="deepseek_openai">DeepSeek (OpenAI 协议)</option>
+                            <option value="deepseek_anthropic">DeepSeek (Anthropic 协议)</option>
+                            <option value="claude">Anthropic Claude (官方端点)</option>
+                            <option value="openai">OpenAI 官方 (GPT-4o)</option>
+                            <option value="moonshot">Moonshot Kimi</option>
+                            <option value="ollama">本地 Ollama (11434)</option>
+                            <option value="custom">完全自定义</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Base URL 专属行 -->
+            <div class="base-url-row glass-panel-nested">
+                <div class="form-group full-width">
+                    <div class="base-url-label-row">
+                        <label for="input-base-url">
+                            <strong>接口 Base URL (用户可自由手填 / 支持中转与官方端点)</strong>
+                        </label>
+                        <div class="url-quick-pills">
+                            <span class="pill-tip">快速填入：</span>
+                            <button class="pill-url-btn" data-proto="openai" data-url="https://api.deepseek.com" data-model="deepseek-v4-flash">DeepSeek (OpenAI)</button>
+                            <button class="pill-url-btn" data-proto="anthropic" data-url="https://api.deepseek.com/anthropic" data-model="deepseek-v4-flash">DeepSeek (Anthropic)</button>
+                            <button class="pill-url-btn" data-proto="anthropic" data-url="https://api.anthropic.com" data-model="claude-3-5-sonnet-20241022">Claude 官方</button>
+                            <button class="pill-url-btn" data-proto="openai" data-url="https://api.openai.com/v1" data-model="gpt-4o">OpenAI 官方</button>
+                            <button class="pill-url-btn" data-proto="openai" data-url="http://localhost:11434/v1" data-model="qwen2.5:7b">本地 Ollama</button>
+                        </div>
+                    </div>
+                    <input type="text" id="input-base-url" class="form-input input-highlight" value="https://api.deepseek.com" placeholder="例如 https://api.deepseek.com 或 https://api.deepseek.com/anthropic">
+                </div>
+            </div>
+
+            <!-- AI 实时请求状态横幅 -->
+            <div class="ai-live-monitor" id="ai-live-monitor">
+                <span class="monitor-icon" id="monitor-icon">⚡</span>
+                <span class="monitor-text" id="monitor-text">当前状态：就绪。输入 API Key 后点击“测试 AI 连通性”或直接启动深度裁决。</span>
+            </div>
+
+            <!-- 核心功能：职业选择与个性化规则提示词输入 -->
+            <div class="rules-box glass-panel-nested">
+                <div class="rules-header">
+                    <div class="rules-title">
+                        <span class="sparkle-icon">✨</span>
+                        <h3>使用者职业画像 & 自定义清理铁律（最高优先级裁决权）</h3>
+                    </div>
+                    <div class="quick-tags">
+                        <span class="quick-tag-label">快捷填充职业：</span>
+                        <button class="pill-tag" data-role="通用职场办公 / 行政商务">通用职场办公</button>
+                        <button class="pill-tag" data-role="财务会计 / 法务审计">财务/法务</button>
+                        <button class="pill-tag" data-role="视频剪辑 / 自媒体博主">影视/自媒体</button>
+                        <button class="pill-tag" data-role="视觉设计 / 3D建模师">视觉设计/3D</button>
+                        <button class="pill-tag" data-role="软件研发 / 技术工程师">软件/工程师</button>
+                        <button class="pill-tag" data-role="高校学生 / 科研学者">学生/科研</button>
+                    </div>
+                </div>
+
+                <div class="rules-content-grid">
+                    <div class="form-group">
+                        <label for="input-profession">您的职业身份</label>
+                        <input type="text" id="input-profession" class="form-input" value="通用职场办公 / 电脑使用者" placeholder="输入您的真实职业（如财务会计、影视剪辑、设计师、工程师、学者等）">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <div class="prompt-label-row">
+                            <label for="input-custom-prompt">
+                                <strong>用户自定义指令提示词 (Guardrails Prompt)</strong>
+                                <span class="label-badge badge-primary">一票否决权</span>
+                                <span class="label-tip">用自然语言明确告知：哪些必须绝对保留，哪些可以放心清理</span>
+                            </label>
+                            <div class="rule-quick-pills">
+                                <span class="pill-tip">快速预设：</span>
+                                <button type="button" class="pill-rule-btn" data-rule="请绝对保留我的核心工作文档、业务聊天通信数据与不可再生工程资产；各类应用产生的临时缓存日志、过期的安装包镜像、闲置的娱乐大游戏可以放心清理。">🛡️ 办公安全型</button>
+                                <button type="button" class="pill-rule-btn" data-rule="只要不是手写的重要业务文档或手头正在进行的工程，其他任何系统历史临时垃圾、大型闲置游戏、各类软件的中间构建与预览缓存都可以放心清空释放空间。">🚀 激进释放型</button>
+                                <button type="button" class="pill-rule-btn" data-rule="绝对不能动我的设计源文件、创作素材库与原片，渲染产生的临时暂存盘(Scratch Disk)、代理剪辑缓存与日常临时日志可以重点清理。">🎨 创作素材保护型</button>
+                            </div>
+                        </div>
+                        <textarea id="input-custom-prompt" class="form-input textarea-prompt" rows="2" placeholder="例如：绝对保留我的工作文档、业务聊天数据与核心工程；各类应用临时垃圾、过期安装镜像、闲置的大型娱乐游戏及可再生的构建缓存可以放心清理。"></textarea>
+                    </div>
+                </div>
+
+                <div class="rules-footer">
+                    <button class="btn btn-secondary btn-sm" id="btn-save-config">💾 保存 AI 配置与规则</button>
+                    <span class="save-tip" id="save-status-tip"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三部分：全盘扫描与 AI 裁决操作 -->
+        <section class="action-section">
+            <div class="action-bar glass-panel">
+                <div class="action-info">
+                    <h3>开始执行深度扫描与 AI 智能裁决</h3>
+                    <p>引擎将穿透 C 盘与 D 盘的高占用目录、编译中间件、单机游戏与音视频，并由大模型结合您的职业生成专属清理建议。</p>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-primary btn-lg" id="btn-start-scan">
+                        <span class="btn-icon-spin hidden" id="scan-spinner">🌀</span>
+                        <span id="scan-btn-text">🚀 启动全盘深度扫描</span>
+                    </button>
+                    <button class="btn btn-gradient btn-lg" id="btn-start-ai" disabled>
+                        <span class="btn-icon-spin hidden" id="ai-spinner">🧠</span>
+                        <span id="ai-btn-text">✨ 启动 AI 职业裁决分析</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第四部分：可视化审核清单与安全执行控制台 -->
+        <section class="results-section glass-panel" id="results-section">
+            <div class="results-header">
+                <div class="results-title-group">
+                    <h2>待清理内容交互审核清单</h2>
+                    <span class="items-count-badge" id="items-count">0 项已检出</span>
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="tab-btn active" data-filter="all">全部内容</button>
+                    <button class="tab-btn" data-filter="recommend-delete">🎯 建议清理</button>
+                    <button class="tab-btn" data-filter="protected">🛡️ 规则保护</button>
+                    <button class="tab-btn" data-filter="game">🎮 游戏娱乐</button>
+                    <button class="tab-btn" data-filter="dev">💻 编译与开发</button>
+                    <button class="tab-btn" data-filter="media">🎬 影音录像</button>
+                </div>
+            </div>
+
+            <!-- AI 总体分析结论卡片 -->
+            <div class="ai-summary-card glass-panel-nested hidden" id="ai-summary-card">
+                <div class="ai-avatar">🤖</div>
+                <div class="ai-summary-content">
+                    <h4>AI 职业优化诊断报告</h4>
+                    <p id="ai-summary-text">AI 正在深度思考中...</p>
+                </div>
+            </div>
+
+            <!-- 批量操作与统计条 -->
+            <div class="selection-bar">
+                <div class="selection-controls">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="check-select-all">
+                        <span class="checkmark"></span>
+                        <span class="checkbox-label">全选</span>
+                    </label>
+                    <button class="btn-link" id="btn-select-recommended">⚡ 仅勾选 AI 推荐清理项</button>
+                    <button class="btn-link" id="btn-clear-selection">清空选择</button>
+                </div>
+
+                <div class="selection-stats">
+                    <span>已选 <strong id="selected-count" class="text-highlight">0</strong> 项</span>
+                    <span class="divider">|</span>
+                    <span>预计释放空间：<strong id="selected-size" class="text-highlight-green">0.00 GB</strong></span>
+                </div>
+            </div>
+
+            <!-- 清单列表容器 -->
+            <div class="items-list-container">
+                <div class="empty-state" id="empty-state">
+                    <div class="empty-icon">🔍</div>
+                    <h3>尚未执行扫描</h3>
+                    <p>点击上方【🚀 启动全盘深度扫描】即可一键检出 C/D 盘所有冗余高占用内容</p>
+                </div>
+
+                <div class="scan-items-list" id="scan-items-list">
+                    <!-- 动态渲染每一个文件项 -->
+                </div>
+            </div>
+
+            <!-- 底部悬浮操作控制条 -->
+            <div class="bottom-action-bar glass-panel" id="bottom-bar">
+                <div class="bottom-info">
+                    <span>已就绪，已勾选待清理项总计释放：<strong id="bottom-free-size">0.00 GB</strong></span>
+                    <span class="safety-tag">🛡️ 安全防误删机制守护中</span>
+                </div>
+                <button class="btn btn-danger btn-lg" id="btn-execute-clean" disabled>
+                    🗑️ 立即执行安全清理
+                </button>
+            </div>
+        </section>
+
+        <!-- 清理确认弹窗 Modal -->
+        <div class="modal-overlay hidden" id="confirm-modal">
+            <div class="modal-card glass-panel">
+                <div class="modal-header">
+                    <h3>⚠️ 物理清理确认</h3>
+                    <button class="modal-close" id="btn-close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-warning">您即将对选中的 <strong id="modal-item-count">0</strong> 个目录/文件执行永久清理操作，释放预计 <strong id="modal-item-size" class="text-highlight-green">0.00 GB</strong> 空间。</p>
+                    <div class="modal-paths-scroll" id="modal-paths-preview">
+                        <!-- 待删除路径预览 -->
+                    </div>
+                    <p class="modal-confirm-hint">请再次核对清单，点击“确认清理”后将直接释放对应硬盘空间。</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="btn-cancel-modal">取消</button>
+                    <button class="btn btn-danger" id="btn-confirm-delete">确认清理并释放</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 结果战报弹窗 Modal -->
+        <div class="modal-overlay hidden" id="result-modal">
+            <div class="modal-card glass-panel modal-success">
+                <div class="modal-header">
+                    <h3>🎉 空间清理圆满完成！</h3>
+                    <button class="modal-close" id="btn-close-result-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="success-banner">
+                        <div class="trophy-icon">🏆</div>
+                        <h2 id="result-summary-title">已成功释放巨大空间</h2>
+                    </div>
+                    <div class="result-details" id="result-log-content">
+                        <!-- 动态日志 -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="btn-finish-result">完成并返回看板</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

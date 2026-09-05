@@ -1,0 +1,31 @@
+{
+  "name": "ai-disk-cleaner",
+  "version": "1.0.0",
+  "description": "智能磁盘空间与运行内存双优化桌面大师 - 支持职业感知与自定义提示词AI精准裁决",
+  "main": "main.js",
+  "scripts": {
+    "start": "node server.js",
+    "app": "node server.js --open",
+    "electron": "electron .",
+    "dev": "electron .",
+    "pack": "npx electron-packager . \"AI-Disk-RAM-Cleaner\" --platform=win32 --arch=x64 --out=dist --overwrite"
+  },
+  "keywords": [
+    "disk-cleaner",
+    "ai",
+    "ram-optimizer",
+    "desktop-app",
+    "deepseek",
+    "openai"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^4.22.2",
+    "open": "^10.2.0"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1"
+  }
+}
